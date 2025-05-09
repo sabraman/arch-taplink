@@ -18,6 +18,12 @@ const nunito = Nunito({
 export const metadata: Metadata = {
 	title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
 	description: "ARCH SMOKE – доверие с первой затяжки",
+	applicationName: "ARCH SMOKE",
+	appleWebApp: {
+		capable: true,
+		title: "ARCH SMOKE",
+		statusBarStyle: "black-translucent",
+	},
 	openGraph: {
 		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
 		description: "ARCH SMOKE – доверие с первой затяжки",
@@ -36,16 +42,21 @@ export const metadata: Metadata = {
 	},
 	icons: {
 		icon: [
-			{ url: "/favicon.svg", type: "image/svg+xml" },
-			{ url: "/favicon.ico", sizes: "any" }
+			{ url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+			{ url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+			{ url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+			{ url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
 		],
 		apple: [
-			{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-			{ url: "/favicon.svg", type: "image/svg+xml" }
+			{ url: "/apple-touch-icon.png", type: "image/png" },
+			{ url: "/apple-touch-icon-57x57.png", type: "image/png", sizes: "57x57" },
+			{ url: "/apple-touch-icon-60x60.png", type: "image/png", sizes: "60x60" },
+			{ url: "/apple-touch-icon-180x180.png", type: "image/png", sizes: "180x180" },
+			{ url: "/apple-touch-icon-1024x1024.png", type: "image/png", sizes: "1024x1024" },
 		],
 	},
-	manifest: "/manifest.json",
-	themeColor: "#B133FF",
+	manifest: "/manifest.webmanifest",
+	themeColor: "#FF731D",
 	twitter: {
 		card: "summary_large_image",
 		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
@@ -64,7 +75,6 @@ export default function RootLayout({
 			suppressHydrationWarning
 		>
 			<head>
-				{/* Add any head specific tags here, e.g., for analytics (Plausible later) or verification */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
