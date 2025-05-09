@@ -1,37 +1,201 @@
-import Link from "next/link";
+import Image from "next/image";
+import { AboutUs } from "~/components/about-us";
+import { Footer } from "~/components/footer";
+import { OpeningHours } from "~/components/opening-hours";
+import { ProductCatalog } from "~/components/product-catalog";
+import { ScrollProgressBar } from "~/components/scroll-progress-bar";
+import { SmoothScroll } from "~/components/smooth-scroll";
 
 export default function HomePage() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-			<div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-				<h1 className="font-extrabold text-5xl text-white tracking-tight sm:text-[5rem]">
-					Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-				</h1>
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-					<Link
-						className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-						href="https://create.t3.gg/en/usage/first-steps"
-						target="_blank"
-					>
-						<h3 className="font-bold text-2xl">First Steps →</h3>
-						<div className="text-lg">
-							Just the basics - Everything you need to know to set up your
-							database and authentication.
+		<>
+			<ScrollProgressBar />
+			<SmoothScroll>
+				<main className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-background">
+					{/* Opening Hours - Fixed at the top */}
+					<div className="fixed top-0 z-50 w-full border-primary/10 border-b bg-background/80 py-2.5 shadow-sm backdrop-blur-lg">
+						<div className="mx-auto w-full max-w-6xl">
+							<OpeningHours />
 						</div>
-					</Link>
-					<Link
-						className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-						href="https://create.t3.gg/en/introduction"
-						target="_blank"
-					>
-						<h3 className="font-bold text-2xl">Documentation →</h3>
-						<div className="text-lg">
-							Learn more about Create T3 App, the libraries it uses, and how to
-							deploy it.
+					</div>
+
+					{/* Content Container with proper padding for fixed header */}
+					<div className="flex w-full flex-grow flex-col items-center">
+						{/* Logo Section */}
+						<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-24 pb-12 md:pt-28 md:pb-16">
+							<Image
+								src="/arch-logo.svg"
+								alt="ARCH SMOKE Лого"
+								width={500}
+								height={183}
+								priority
+								className="h-auto w-full max-w-md drop-shadow-xl filter"
+							/>
 						</div>
-					</Link>
-				</div>
-			</div>
-		</main>
+
+						{/* About Us Section */}
+						<AboutUs />
+
+						{/* Product Catalog with Enhanced Layout */}
+						<div className="relative w-full bg-gradient-to-b from-transparent to-background/40 pt-6 pb-20">
+							{/* Background decorative dots */}
+							<div className="absolute top-20 left-6 opacity-10 md:left-20">
+								<svg
+									width="30"
+									height="30"
+									viewBox="0 0 30 30"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<circle
+										cx="2"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="2"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="2"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+								</svg>
+							</div>
+							<div className="absolute right-6 bottom-20 opacity-10 md:right-20">
+								<svg
+									width="30"
+									height="30"
+									viewBox="0 0 30 30"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<circle
+										cx="2"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="2"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="2"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="15"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="2"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="15"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+									<circle
+										cx="28"
+										cy="28"
+										r="2"
+										fill="currentColor"
+										className="text-primary"
+									/>
+								</svg>
+							</div>
+
+							<div className="mx-auto max-w-5xl">
+								<ProductCatalog />
+							</div>
+						</div>
+					</div>
+
+					{/* Modern Footer with Enhanced Design */}
+					<Footer />
+				</main>
+			</SmoothScroll>
+		</>
 	);
 }
