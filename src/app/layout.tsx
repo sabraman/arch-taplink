@@ -18,6 +18,22 @@ const nunito = Nunito({
 export const metadata: Metadata = {
 	title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
 	description: "ARCH SMOKE – доверие с первой затяжки",
+	openGraph: {
+		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+		description: "ARCH SMOKE – доверие с первой затяжки",
+		url: "/", // Assuming this is the canonical URL of the main page
+		siteName: "ARCH SMOKE",
+		images: [
+			{
+				url: "/og", // Points to the new OG image route
+				width: 1200,
+				height: 630,
+				alt: "ARCH SMOKE OG Image",
+			},
+		],
+		locale: "ru_RU",
+		type: "website",
+	},
 	icons: {
 		icon: [
 			{ url: "/favicon.svg", type: "image/svg+xml" },
@@ -30,6 +46,12 @@ export const metadata: Metadata = {
 	},
 	manifest: "/manifest.json",
 	themeColor: "#B133FF",
+	twitter: {
+		card: "summary_large_image",
+		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+		description: "ARCH SMOKE – доверие с первой затяжки",
+		images: ["/og"], // Points to the new OG image route
+	},
 };
 
 export default function RootLayout({
