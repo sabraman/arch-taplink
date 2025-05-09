@@ -319,7 +319,7 @@ const productData: ProductCategory[] = [
 const aboutUsContent = `
 <h3 class="text-xl font-semibold mb-4">Добро пожаловать в ARCH!</h3>
 <p class="mb-3">
-  ARCH SMOKE — ваш премиальный партнер в мире вейпов и электронных сигарет. Мы гордимся тем, что предлагаем исключительный ассортимент продукции высочайшего качества, в сочетании с профессиональным обслуживанием и экспертной консультацией.
+  ARCH — ваш премиальный партнер в мире вейпов и электронных сигарет. Мы гордимся тем, что предлагаем исключительный ассортимент продукции высочайшего качества, в сочетании с профессиональным обслуживанием и экспертной консультацией.
 </p>
 <p class="mb-3">
   Наш магазин специализируется на следующих категориях:
@@ -389,12 +389,12 @@ export function ProductCatalog() {
 									</div>
 									{category.brands.length > 0
 										? category.brands.map((brand, brandIndex) => (
-												<BrandCollapsible
-													key={brandIndex}
-													brand={brand}
-													isFirst={brandIndex === 0}
-												/>
-											))
+											<BrandCollapsible
+												key={brandIndex}
+												brand={brand}
+												isFirst={brandIndex === 0}
+											/>
+										))
 										: null}
 								</AccordionContent>
 							</AccordionItem>

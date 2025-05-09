@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
         const titleParam = searchParams.get("title");
         const sloganParam = searchParams.get("slogan");
 
-        const siteName = siteNameParam || "ARCH SMOKE";
+        const siteName = siteNameParam || "ARCH";
         // Default title can be more generic if not provided
         const title = titleParam || "Табак и аксессуары";
         const slogan = sloganParam || "доверие с первой затяжки";

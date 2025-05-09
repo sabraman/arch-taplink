@@ -16,25 +16,25 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-	title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
-	description: "ARCH SMOKE – доверие с первой затяжки",
-	applicationName: "ARCH SMOKE",
+	title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+	description: "ARCH – доверие с первой затяжки",
+	applicationName: "ARCH",
 	appleWebApp: {
 		capable: true,
-		title: "ARCH SMOKE",
+		title: "ARCH",
 		statusBarStyle: "black-translucent",
 	},
 	openGraph: {
-		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
-		description: "ARCH SMOKE – доверие с первой затяжки",
+		title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+		description: "ARCH – доверие с первой затяжки",
 		url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000",
-		siteName: "ARCH SMOKE",
+		siteName: "ARCH",
 		images: [
 			{
 				url: new URL("/og", process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
 				width: 1200,
 				height: 630,
-				alt: "ARCH SMOKE OG Image",
+				alt: "ARCH OG Image",
 			},
 		],
 		locale: "ru_RU",
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
 	themeColor: "#B133FF",
 	twitter: {
 		card: "summary_large_image",
-		title: "ARCH SMOKE – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
-		description: "ARCH SMOKE – доверие с первой затяжки",
+		title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+		description: "ARCH – доверие с первой затяжки",
 		images: ["/og"], // Points to the new OG image route
 	},
 };
@@ -90,7 +90,7 @@ export default function RootLayout({
 						__html: JSON.stringify({
 							"@context": "https://schema.org",
 							"@type": "LocalBusiness",
-							name: "ARCH SMOKE",
+							name: "ARCH",
 							telephone: "+79856696870",
 							openingHours: "Mo-Su 11:00-22:30",
 							address: {

@@ -25,7 +25,7 @@ export default function HomePage() {
 						<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-20 xs:pt-22 sm:pt-24 md:pt-28 lg:pt-32 pb-8 xs:pb-10 sm:pb-12 md:pb-16">
 							<Image
 								src="/arch-logo.svg"
-								alt="ARCH SMOKE Лого"
+								alt="ARCH Лого"
 								width={500}
 								height={183}
 								priority

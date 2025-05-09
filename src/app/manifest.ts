@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ARCH SMOKE",
-    short_name: "ARCH SMOKE",
-    description: "ARCH SMOKE – доверие с первой затяжки.",
+    name: "ARCH",
+    short_name: "ARCH",
+    description: "ARCH – доверие с первой затяжки.",
     start_url: "/?homescreen=1",
     display: "standalone",
     background_color: "#2B2827",

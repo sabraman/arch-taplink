@@ -71,7 +71,7 @@
 }
 
 .dark {
-  /* Arch Smoke Theme (Dark by default) */
+  /* Arch Theme (Dark by default) */
   --background: hsl(20, 6%, 15%); /* #2B2827 */
   --foreground: hsl(0, 0%, 100%); /* #FFFFFF */
 

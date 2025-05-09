@@ -54,7 +54,7 @@ export function Footer() {
 						<div className="mb-4 flex items-center">
 							<Image
 								src="/arch-logo.svg"
-								alt="ARCH SMOKE Logo"
+								alt="ARCH Logo"
 								width={120}
 								height={50}
 								className="h-10 w-auto"

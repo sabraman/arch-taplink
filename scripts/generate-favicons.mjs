@@ -7,9 +7,9 @@ const outputDir = "public"; // Output directory for favicons and manifest files
 
 const configuration = {
   path: "/", // Path for HTML links, relative to the public directory
-  appName: "ARCH SMOKE",
-  appShortName: "ARCH SMOKE",
-  appDescription: "ARCH SMOKE – доверие с первой затяжки.",
+  appName: "ARCH",
+  appShortName: "ARCH",
+  appDescription: "ARCH – доверие с первой затяжки.",
   developerName: "Yudin Danila",
   developerURL: "https://sabraman.ru",
   background: "#2B2827", // Page background color

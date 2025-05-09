@@ -268,7 +268,7 @@ export function Hero() {
                         <div className="relative overflow-hidden rounded-3xl">
                             <Image
                                 src="/arch-logo.svg"
-                                alt="ARCH SMOKE Лого"
+                                alt="ARCH Лого"
                                 width={600}
                                 height={248}
                                 priority
