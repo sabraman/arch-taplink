@@ -93,25 +93,25 @@ export function OpeningHours() {
 	}, []);
 
 	return (
-		<div className="flex items-center justify-center gap-4 px-4 sm:px-6">
+		<div className="flex items-center justify-between gap-1 xxs:gap-2 xs:gap-3 sm:gap-4 md:gap-6 px-1.5 xxs:px-2 xs:px-3 sm:px-5 md:px-6 py-0.5 xxs:py-1 xs:py-1.5 sm:py-2">
 			{/* Left side icons */}
-			<div className="flex items-center space-x-2">
+			<div className="flex items-center space-x-1.5 xxs:space-x-2 xs:space-x-2.5 sm:space-x-3">
 				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 					<Link
 						href="https://t.me/arch_smoke"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<div className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
-							<Send size={16} />
+						<div className="flex h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
+							<Send className="h-3.5 w-3.5 xxs:h-4.5 xxs:w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6" />
 						</div>
 					</Link>
 				</motion.div>
 
 				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 					<Link href="tel:+79856696870">
-						<div className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
-							<Phone size={16} />
+						<div className="flex h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
+							<Phone className="h-3.5 w-3.5 xxs:h-4.5 xxs:w-4.5 xs:h-5 xs:w-5 sm:h-6 sm:w-6" />
 						</div>
 					</Link>
 				</motion.div>
@@ -126,18 +126,16 @@ export function OpeningHours() {
 			>
 				<Badge
 					variant="outline"
-					className={`flex items-center gap-2 rounded-full border px-3 py-2 font-medium text-sm shadow-sm ${
-						isOpen
-							? "border-primary/30 bg-primary/5 text-white"
-							: "border-destructive/30 bg-destructive/5 text-white"
-					}`}
+					className={`flex min-h-8 xxs:min-h-10 items-center gap-1 xxs:gap-1.5 xs:gap-2 sm:gap-2.5 rounded-full border px-2 xxs:px-3 xs:px-3.5 sm:px-4 py-1 xxs:py-1.5 xs:py-2 sm:py-2.5 text-[10px] xxs:text-xs xs:text-sm sm:text-base font-medium shadow-sm ${isOpen
+						? "border-primary/30 bg-primary/5 text-white"
+						: "border-destructive/30 bg-destructive/5 text-white"
+						}`}
 				>
 					{/* Status indicator */}
-					<span className="flex items-center gap-1.5">
+					<span className="flex items-center gap-0.5 xxs:gap-1 xs:gap-1.5 sm:gap-2">
 						<motion.span
-							className={`inline-flex h-2.5 w-2.5 rounded-full ${
-								isOpen ? "bg-primary" : "bg-destructive"
-							}`}
+							className={`inline-flex h-2 w-2 xxs:h-2.5 xxs:w-2.5 xs:h-3 xs:w-3 sm:h-3.5 sm:w-3.5 rounded-full ${isOpen ? "bg-primary" : "bg-destructive"
+								}`}
 							animate={{
 								scale: [1, 1.2, 1],
 								opacity: [0.7, 1, 0.7],
@@ -154,16 +152,16 @@ export function OpeningHours() {
 					</span>
 
 					{/* Separator */}
-					<span className="mx-1 text-foreground/30">•</span>
+					<span className="mx-0.5 xxs:mx-1 xs:mx-1.5 sm:mx-2 text-foreground/30">•</span>
 
 					{/* Hours */}
 					<span className="flex items-center">
-						<Clock className="mr-1 h-3.5 w-3.5 opacity-70" />
+						<Clock className="mr-0.5 xxs:mr-1 xs:mr-1.5 sm:mr-2 h-2.5 w-2.5 xxs:h-3.5 xxs:w-3.5 xs:h-4 xs:w-4 sm:h-5 sm:w-5 opacity-70" />
 						<span>11:00–22:30</span>
 					</span>
 
 					{/* Paw icon */}
-					<span className="ml-1.5 text-primary/50">
+					<span className="ml-0.5 xxs:ml-1 xs:ml-1.5 sm:ml-2 text-primary/50">
 						<PawIcon />
 					</span>
 				</Badge>
@@ -177,7 +175,7 @@ export function OpeningHours() {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<div className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
+						<div className="flex h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary transition-colors hover:bg-primary/20">
 							<RouteIcon />
 						</div>
 					</Link>

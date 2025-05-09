@@ -13,7 +13,7 @@ export default function HomePage() {
 			<SmoothScroll>
 				<main className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-background">
 					{/* Opening Hours - Fixed at the top */}
-					<div className="fixed top-0 z-50 w-full border-primary/10 border-b bg-background/80 py-2.5 shadow-sm backdrop-blur-lg">
+					<div className="fixed top-0 z-50 w-full border-primary/10 border-b bg-background/80 shadow-sm backdrop-blur-lg">
 						<div className="mx-auto w-full max-w-6xl">
 							<OpeningHours />
 						</div>
@@ -22,7 +22,7 @@ export default function HomePage() {
 					{/* Content Container with proper padding for fixed header */}
 					<div className="flex w-full flex-grow flex-col items-center">
 						{/* Logo Section */}
-						<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-24 pb-12 md:pt-28 md:pb-16">
+						<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-20 xs:pt-22 sm:pt-24 md:pt-28 lg:pt-32 pb-8 xs:pb-10 sm:pb-12 md:pb-16">
 							<Image
 								src="/arch-logo.svg"
 								alt="ARCH SMOKE Лого"
