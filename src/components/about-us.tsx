@@ -37,7 +37,7 @@ export function AboutUs() {
 					</div>
 
 					<p className="text-white/80">
-						ARCH SMOKE — это не просто магазин, это пространство, где вы всегда
+						ARCH — это не просто магазин, это пространство, где вы всегда
 						найдете лучшие товары и профессиональную консультацию.{" "}
 						<span className="font-medium text-primary">
 							Доверие с первой затяжки

@@ -160,7 +160,7 @@ export function Footer() {
 
 						<div className="mt-auto pt-4 text-center text-muted-foreground/70 text-xs md:text-left">
 							<p className="mt-1">
-								© {new Date().getFullYear()} ARCH SMOKE. Все права защищены.
+								© {new Date().getFullYear()} ARCH. Все права защищены.
 							</p>
 						</div>
 					</motion.div>
