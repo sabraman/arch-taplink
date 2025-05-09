@@ -6,6 +6,7 @@ import {
 	AgeVerificationStyles,
 } from "~/components/age-verification";
 import { cn } from "~/lib/utils";
+import { PostHogProvider } from "~/components/PostHogProvider";
 
 const nunito = Nunito({
 	subsets: ["latin", "cyrillic"],
@@ -44,9 +45,11 @@ export default function RootLayout({
 				{/* Add any head specific tags here, e.g., for analytics (Plausible later) or verification */}
 			</head>
 			<body className="flex min-h-screen flex-col">
-				<AgeVerification />
-				<AgeVerificationStyles />
-				{children}
+				<PostHogProvider>
+					<AgeVerification />
+					<AgeVerificationStyles />
+					{children}
+				</PostHogProvider>
 			</body>
 		</html>
 	);
