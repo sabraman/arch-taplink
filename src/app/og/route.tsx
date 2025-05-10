@@ -1,116 +1,42 @@
 import { ImageResponse } from 'next/og';
 import { NextRequest } from "next/server";
 
+export const runtime = 'edge'; // Use edge runtime for better compatibility
+
 export async function GET(req: NextRequest) {
     try {
-        const { searchParams } = new URL(req.url);
-
-        // Parameters for customization (optional, with defaults)
-        const siteNameParam = searchParams.get("siteName");
-        const titleParam = searchParams.get("title");
-        const sloganParam = searchParams.get("slogan");
-
-        const siteName = siteNameParam || "ARCH";
-        // Default title can be more generic if not provided
-        const title = titleParam || "Табак и аксессуары";
-        const slogan = sloganParam || "доверие с первой затяжки";
-
-        // Construct full URL for the logo
-        const logoUrl = new URL("/arch-corgi-logo.svg", req.nextUrl.origin).toString();
-
-        // Fetch Nunito font variations
-        const nunitoRegularFont = await fetch(
-            "https://fonts.gstatic.com/s/nunito/v26/XRXV3I6Li01BKofINeaB.ttf",
-        ).then((res) => res.arrayBuffer());
-        const nunitoBoldFont = await fetch(
-            "https://fonts.gstatic.com/s/nunito/v26/XRXg3I6Li01BKofIMW_xZg.ttf", // Corrected URL for Bold
-        ).then((res) => res.arrayBuffer());
-        const nunitoExtraBoldFont = await fetch(
-            "https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofIMeGT-A.ttf",
-        ).then((res) => res.arrayBuffer());
-
-
         return new ImageResponse(
             (
                 <div
                     style={{
-                        height: "100%",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "#2B2827",
-                        color: "#FFFFFF",
-                        fontFamily: '"Nunito"',
-                        padding: "40px",
+                        display: 'flex',
+                        fontSize: 40,
+                        color: 'black',
+                        background: '#FF731D',
+                        width: '100%',
+                        height: '100%',
+                        textAlign: 'center',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
                 >
-                    <img src={logoUrl} width="180" height="180" alt="" style={{ marginBottom: "30px" }} />
-                    <div
-                        style={{
-                            fontSize: 72,
-                            fontWeight: 800, // ExtraBold
-                            color: "#FF731D", // Primary CTA color
-                            marginBottom: "10px",
-                            textAlign: "center",
-                            lineHeight: 1.2,
-                        }}
-                    >
-                        {siteName}
-                    </div>
-                    <div
-                        style={{
-                            fontSize: 48,
-                            fontWeight: 700, // Bold
-                            color: "#FFFFFF",
-                            marginBottom: "20px",
-                            textAlign: "center",
-                            lineHeight: 1.3,
-                        }}
-                    >
-                        {title}
-                    </div>
-                    <div
-                        style={{
-                            fontSize: 32,
-                            fontWeight: 400, // Regular
-                            color: "#FEE09B", // Secondary/Subtle gradient color
-                            textAlign: "center",
-                            lineHeight: 1.4,
-                        }}
-                    >
-                        {slogan}
-                    </div>
+                    <svg width="500" height="500" viewBox="0 0 154 152" fill="none">
+                        <path d="M45.0106 61.1776C57.4073 52.9089 77.7255 52.0483 91.8915 54.9901C100.973 56.8759 109.442 60.2813 114.684 68.2537C117.08 73.7396 117.228 78.6504 115.062 84.245C109.36 98.9735 95.8989 106.363 82.8729 113.559L82.6728 124.783C90.891 131.615 101.157 136.973 112.168 136.007C117.419 135.505 122.496 133.863 127.047 131.196C128.59 130.281 130.059 129.247 131.44 128.102C134.938 125.188 140.562 118.998 145.445 122.944C147.113 124.292 148.335 126.51 148.514 128.651C148.744 131.418 147.378 133.868 145.576 135.858C138.079 144.135 123.022 150.723 111.9 151.2C101.132 151.662 88.5342 147.23 80.6503 139.853C79.5982 138.851 78.5605 137.833 77.537 136.8C67.7349 146.136 56.2543 151.425 42.5009 151.107C30.9988 150.841 15.5079 144.713 7.6083 136.245C5.74948 134.252 4.19149 131.55 4.26357 128.739C4.31343 126.801 5.21584 124.992 6.6376 123.693C8.00569 122.443 9.86873 121.728 11.7265 121.82C16.2124 122.042 20.7339 127.982 24.4501 130.429C38.9416 139.967 56.6333 136.597 69.4188 125.865C69.9146 125.448 70.3957 125.013 70.8612 124.561C70.7901 120.948 70.7636 117.334 70.7821 113.72C59.8437 107.431 49.3854 102.18 42.0634 91.3602C39.9501 88.2379 38.1088 84.7872 37.1435 81.1248C35.9828 76.721 36.3958 72.6206 38.1044 68.4178C39.9313 65.4424 42.1031 63.1171 45.0106 61.1776ZM14.7304 0.647301C17.651 0.587914 20.5117 1.4848 22.8749 3.20199C27.1283 6.23411 29.6051 11.3799 30.4511 16.4305C31.4186 22.2073 30.1614 28.5439 26.6884 33.3094C24.0737 36.8973 20.5893 39.003 16.1991 39.7118C13.1454 39.664 10.298 38.7878 7.81338 36.9862C3.75714 34.0443 1.27579 29.1624 0.447168 24.2977C-0.553986 18.4196 0.699344 11.9559 4.21084 7.08675C6.83224 3.45131 10.3005 1.34653 14.7304 0.647301ZM135.792 0.90609C138.459 0.572188 140.901 0.767415 143.382 1.88168C147.668 3.80838 150.601 7.96731 152.165 12.2801C154.241 18.0064 154.082 24.5554 151.439 30.075C149.155 34.8473 145.829 37.6949 140.834 39.4149C138.035 39.7908 135.421 39.5346 132.852 38.2869C128.589 36.2157 125.734 32.0974 124.266 27.6971C122.308 21.8291 122.679 15.1203 125.514 9.59066C127.77 5.18821 131.075 2.41487 135.792 0.90609Z" fill="#2B2827" />
+                    </svg>
                 </div>
             ),
             {
                 width: 1200,
                 height: 630,
-                fonts: [
-                    {
-                        name: "Nunito",
-                        data: nunitoRegularFont,
-                        weight: 400,
-                        style: "normal",
-                    },
-                    {
-                        name: "Nunito",
-                        data: nunitoBoldFont,
-                        weight: 700,
-                        style: "normal",
-                    },
-                    {
-                        name: "Nunito",
-                        data: nunitoExtraBoldFont,
-                        weight: 800,
-                        style: "normal",
-                    },
-                ],
             },
         );
     } catch (e: any) {
         console.error(`Failed to generate OG image: ${e.message}`);
-        return new Response("Failed to generate OG image", { status: 500 });
+        return new Response(`<!DOCTYPE html><html><body style="margin:0;background:#FF731D;display:flex;height:100vh;align-items:center;justify-content:center"><h1 style="color:#2B2827;font-family:sans-serif">ARCH</h1></body></html>`,
+            {
+                status: 200,
+                headers: { 'Content-Type': 'text/html' }
+            }
+        );
     }
 } 

@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 	themeColor: "#B133FF",
 	twitter: {
 		card: "summary_large_image",
-		title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
+		title: "ARCH – Табак, вейпы, жидкости в Санкт-Петербурге",
 		description: "ARCH – доверие с первой затяжки",
 		images: ["/og"], // Points to the new OG image route
 	},
