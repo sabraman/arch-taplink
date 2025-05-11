@@ -1,29 +1,73 @@
-# Create T3 App
+# Arch Taplink
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This project is a link-in-bio page for **ARCH**.
 
-## What's next? How do I make an app with this?
+## Technology Stack
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This project is built with the following technologies:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **Framework**: [Next.js](https://nextjs.org/) 15 (using App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) (configured mobile-first)
+- **UI Components**:
+  - [shadcn/ui](https://ui.shadcn.com/): For baseline UI components.
+  - [Framer Motion](https://www.framer.com/motion/): For animations.
+- **Package Manager**: [pnpm](https://pnpm.io/)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/installation) installed.
+
+### Installation
+
+1. Clone the repo (if you haven't already):
+   ```sh
+   git clone <YOUR_REPOSITORY_URL>
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd arch-taplink
+   ```
+3. Install PNPM packages:
+   ```sh
+   pnpm install
+   ```
+
+### Development
+
+To start the development server:
+
+```sh
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+
+### Building for Production
+
+To build the application for production:
+
+```sh
+pnpm build
+```
+
+## Deployment
+
+This application is ready to be deployed on platforms like [Vercel](https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app) (the creators of Next.js) or any other platform that supports Next.js applications.
+
+Refer to the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Learn More
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+To learn more about the technologies used in this project, take a look at the following resources:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - learn about Tailwind CSS.
+- [shadcn/ui Documentation](https://ui.shadcn.com/docs) - learn about shadcn/ui components.
+- [Framer Motion Documentation](https://motion.dev/docs/react-quick-start/) - learn about Framer Motion.
+- [pnpm Documentation](https://pnpm.io/motivation) - learn about pnpm.
