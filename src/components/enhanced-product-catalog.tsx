@@ -13,7 +13,8 @@ import {
 	Package,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import * as React from "react";
 
 import {
 	Accordion,
@@ -22,17 +23,27 @@ import {
 	AccordionTrigger,
 } from "~/components/ui/accordion";
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "~/components/ui/card";
-import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "~/components/ui/collapsible";
+import { ProductSearch } from "~/components/product-search";
+import { ProductCatalogSkeleton } from "~/components/ui/website-skeletons";
+import { ErrorBoundary, ErrorFallback } from "~/components/ui/error-boundary";
+
+function NotFoundError({ message = "Содержимое не найдено" }: { message?: string }) {
+	return (
+		<div className="flex flex-col items-center justify-center min-h-[200px] p-8 text-center space-y-4">
+			<div className="text-6xl opacity-50" role="img" aria-label="Не найдено">
+				🔍
+			</div>
+			<div className="space-y-2">
+				<h3 className="text-lg font-semibold">Ничего не найдено</h3>
+				<p className="text-muted-foreground">{message}</p>
+			</div>
+		</div>
+	);
+}
 
 // Import SVG as component
 const PawIcon = () => (
@@ -363,91 +374,200 @@ const productData: ProductCategory[] = [
 	},
 ];
 
-// Separate About Us content
-const aboutUsContent = `
-<h3 class="text-xl font-semibold mb-4">Добро пожаловать в ARCH!</h3>
-<p class="mb-3">
-  ARCH — ваш премиальный партнер в мире вейпов и электронных сигарет. Мы гордимся тем, что предлагаем исключительный ассортимент продукции высочайшего качества, в сочетании с профессиональным обслуживанием и экспертной консультацией.
-</p>
-<p class="mb-3">
-  Наш магазин специализируется на следующих категориях:
-</p>
-<ul class="list-disc pl-5 mb-4 space-y-1">
-  <li>Вейп тематика и комплектующие premium-класса</li>
-  <li>Табак, стики и эксклюзивные табаки для кальяна</li>
-  <li>Оригинальные импортные напитки, сладости и снеки</li>
-</ul>
-<p class="mb-6">
-  Мы создаем уникальный опыт для наших клиентов, сочетая качество продукции с персональным подходом к каждому посетителю. Приходите к нам — будем рады вас видеть!
-</p>
-<p class="text-xs text-muted-foreground">
-  Товар доступен только в магазинах сети. Дистанционная продажа/доставка не осуществляется. Не является публичной офертой.
-</p>
-`;
+export function EnhancedProductCatalog() {
+	const [searchQuery, setSearchQuery] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [openAccordions, setOpenAccordions] = useState<string[]>(["cigarettes"]);
+	const [openCollapsibles, setOpenCollapsibles] = useState<string[]>([]);
 
-export function ProductCatalog() {
+	// Filter products based on search query
+	const filteredProducts = useMemo(() => {
+		if (!searchQuery.trim()) return productData;
+		
+		const query = searchQuery.toLowerCase().trim();
+		return productData.map(category => {
+			const filteredBrands = category.brands.filter(brand => {
+				// Check if brand name matches
+				const brandMatches = brand.name.toLowerCase().includes(query);
+				// Check if any model matches
+				const modelMatches = brand.models.some(model => 
+					model.toLowerCase().includes(query)
+				);
+				// Check if category title matches
+				const categoryMatches = category.title.toLowerCase().includes(query);
+				
+				return brandMatches || modelMatches || categoryMatches;
+			}).map(brand => ({
+				...brand,
+				// Filter models if brand doesn't match but models do
+				models: brand.name.toLowerCase().includes(query) 
+					? brand.models 
+					: brand.models.filter(model => 
+							model.toLowerCase().includes(query)
+						)
+			}));
+			
+			return {
+				...category,
+				brands: filteredBrands
+			};
+		}).filter(category => 
+			category.brands.length > 0 || 
+			category.title.toLowerCase().includes(query)
+		);
+	}, [searchQuery]);
+
+	const handleSearch = (query: string) => {
+		setIsLoading(true);
+		// Simulate search delay for better UX
+		setTimeout(() => {
+			setSearchQuery(query);
+			setIsLoading(false);
+		}, 200);
+	};
+
+	// Update open accordions and collapsibles when search results change
+	useEffect(() => {
+		if (searchQuery.trim()) {
+			const matchingCategories = filteredProducts.map(category => category.id);
+			setOpenAccordions(matchingCategories);
+			
+			// Also open all collapsibles that have matches
+			const matchingCollapsibles: string[] = [];
+			filteredProducts.forEach(category => {
+				category.brands.forEach((brand, brandIndex) => {
+					const brandId = `${category.id}-brand-${brandIndex}`;
+					matchingCollapsibles.push(brandId);
+				});
+			});
+			setOpenCollapsibles(matchingCollapsibles);
+		} else {
+			// When search is cleared, only close collapsibles but keep user's accordion choices
+			setOpenCollapsibles([]);
+		}
+	}, [filteredProducts, searchQuery]);
+
+	// Highlight matching text
+	const highlightText = (text: string, query: string) => {
+		if (!query.trim()) return text;
+		
+		const regex = new RegExp(`(${query})`, 'gi');
+		const parts = text.split(regex);
+		
+		return parts.map((part, index) => 
+			regex.test(part) ? (
+				<mark key={index} className="bg-primary/30 text-foreground rounded px-1">
+					{part}
+				</mark>
+			) : (
+				part
+			)
+		);
+	};
+
+	const hasResults = filteredProducts.length > 0;
+	const showNoResults = searchQuery.trim() && !hasResults && !isLoading;
+
 	return (
-		<>
-			{/* Product Catalog Section */}
+		<ErrorBoundary>
 			<motion.section
 				className="mx-auto w-full max-w-5xl overflow-hidden px-4 py-12"
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.8 }}
+				role="region"
+				aria-labelledby="catalog-heading"
 			>
 				<div className="mb-10 flex flex-col items-center">
-					<motion.h2
+					<motion.h1
+						id="catalog-heading"
 						className="mb-4 font-semibold text-2xl text-foreground md:text-3xl"
 						initial={{ opacity: 0, y: -20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.2 }}
 					>
 						Каталог товаров
-					</motion.h2>
+					</motion.h1>
+					<motion.div
+						className="w-full max-w-md mt-4"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, delay: 0.4 }}
+					>
+						<ProductSearch 
+							onSearch={handleSearch}
+							placeholder="Поиск товаров, брендов, моделей..."
+						/>
+					</motion.div>
 				</div>
 
-				<div className="w-full overflow-x-clip">
-					<Accordion
-						type="single"
-						collapsible
-						className="w-full"
-						defaultValue="cigarettes"
-					>
-						{productData.map((category) => (
-							<AccordionItem
-								value={category.id}
-								key={category.id}
-								className="border-primary/10 border-b py-2 outline-none has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
-							>
-								<AccordionTrigger className="[&>svg]:-order-1 justify-start gap-3 rounded-md text-[15px] leading-6 outline-none hover:no-underline focus-visible:ring-0">
-									<span className="flex items-center gap-3">
-										<category.icon
-											size={16}
-											className="shrink-0 text-primary"
-											aria-hidden="true"
-										/>
-										<span className="text-wrap break-words">
-											{category.title}
-										</span>
-									</span>
-								</AccordionTrigger>
-								<AccordionContent className="p-0">
-									<div className="p-2 text-muted-foreground text-sm">
-										{category.description}
-									</div>
-									{category.brands.length > 0
-										? category.brands.map((brand, brandIndex) => (
-											<BrandCollapsible
-												key={brandIndex}
-												brand={brand}
-												isFirst={brandIndex === 0}
+				<div className="w-full overflow-x-clip" role="main">
+					{isLoading ? (
+						<ProductCatalogSkeleton />
+					) : showNoResults ? (
+						<NotFoundError 
+							message={`Не найдено товаров по запросу "${searchQuery}". Попробуйте изменить поисковый запрос.`}
+						/>
+					) : (
+						<Accordion
+							type="multiple"
+							className="w-full"
+							value={openAccordions}
+							onValueChange={setOpenAccordions}
+						>
+							{filteredProducts.map((category) => (
+								<AccordionItem
+									value={category.id}
+									key={category.id}
+									className="border-primary/10 border-b py-2 outline-none has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50"
+								>
+									<AccordionTrigger 
+										className="[&>svg]:-order-1 justify-start gap-3 rounded-md text-[15px] leading-6 outline-none hover:no-underline focus-visible:ring-0"
+										aria-expanded="false"
+										aria-controls={`${category.id}-content`}
+									>
+										<span className="flex items-center gap-3">
+											<category.icon
+												size={16}
+												className="shrink-0 text-primary"
+												aria-hidden="true"
 											/>
-										))
-										: null}
-								</AccordionContent>
-							</AccordionItem>
-						))}
-					</Accordion>
+											<span className="text-wrap break-words">
+												{highlightText(category.title, searchQuery)}
+											</span>
+										</span>
+									</AccordionTrigger>
+									<AccordionContent 
+										className="p-0"
+										id={`${category.id}-content`}
+										role="region"
+										aria-labelledby={`${category.id}-trigger`}
+									>
+										{category.description && (
+											<div className="p-2 text-muted-foreground text-sm">
+												{category.description}
+											</div>
+										)}
+										{category.brands.length > 0
+											? category.brands.map((brand, brandIndex) => (
+												<BrandCollapsible
+													key={`${category.id}-${brandIndex}`}
+													brand={brand}
+													isFirst={brandIndex === 0}
+													categoryId={category.id}
+													brandIndex={brandIndex}
+													searchQuery={searchQuery}
+													highlightText={highlightText}
+													openCollapsibles={openCollapsibles}
+													setOpenCollapsibles={setOpenCollapsibles}
+												/>
+											))
+											: null}
+									</AccordionContent>
+								</AccordionItem>
+							))}
+						</Accordion>
+					)}
 				</div>
 
 				{/* Decorative paw icon - positioned relative to prevent overflow */}
@@ -455,38 +575,79 @@ export function ProductCatalog() {
 					<PawIcon />
 				</div>
 			</motion.section>
-		</>
+		</ErrorBoundary>
 	);
 }
 
 function BrandCollapsible({
 	brand,
 	isFirst,
-}: { brand: ProductBrand; isFirst: boolean }) {
+	categoryId,
+	brandIndex,
+	searchQuery,
+	highlightText,
+	openCollapsibles,
+	setOpenCollapsibles,
+}: { 
+	brand: ProductBrand; 
+	isFirst: boolean; 
+	categoryId: string;
+	brandIndex: number;
+	searchQuery: string;
+	highlightText: (text: string, query: string) => React.ReactNode;
+	openCollapsibles: string[];
+	setOpenCollapsibles: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
+	const brandId = `${categoryId}-brand-${brandIndex}`;
+	const isOpen = openCollapsibles.includes(brandId);
+
+	const handleToggle = () => {
+		setOpenCollapsibles(prev => 
+			prev.includes(brandId)
+				? prev.filter(id => id !== brandId)
+				: [...prev, brandId]
+		);
+	};
+
 	return (
 		<Collapsible
 			className={`py-2 ps-6 pe-4 ${!isFirst ? "border-primary/5 border-t" : ""}`}
+			open={isOpen}
+			onOpenChange={handleToggle}
 		>
-			<CollapsibleTrigger className="flex gap-2 font-medium text-[15px] text-foreground leading-6 [&[data-state=open]>svg]:rotate-180">
+			<CollapsibleTrigger 
+				className="flex gap-2 font-medium text-[15px] text-foreground leading-6 [&[data-state=open]>svg]:rotate-180 w-full text-left"
+				aria-expanded="false"
+				aria-controls={`${brandId}-content`}
+			>
 				<ChevronDownIcon
 					size={16}
 					className="mt-1 shrink-0 opacity-60 transition-transform duration-200"
 					aria-hidden="true"
 				/>
-				<span className="text-wrap break-words">{brand.name}</span>
+				<span className="text-wrap break-words">{highlightText(brand.name, searchQuery)}</span>
 			</CollapsibleTrigger>
-			<CollapsibleContent className="mt-1 overflow-hidden ps-6 text-muted-foreground text-sm transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-				<ul className="space-y-1 py-2">
+			<CollapsibleContent 
+				className="mt-1 overflow-hidden ps-6 text-muted-foreground text-sm transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+				id={`${brandId}-content`}
+				role="region"
+				aria-labelledby={`${brandId}-trigger`}
+			>
+				<ul className="space-y-1 py-2" role="list">
 					{brand.models.map((model, modelIndex) => (
 						<motion.li
-							key={modelIndex}
+							key={`${brandId}-model-${modelIndex}`}
 							className="flex items-center text-muted-foreground text-sm"
 							initial={{ opacity: 0, x: -10 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ delay: modelIndex * 0.03 }}
+							role="listitem"
 						>
-							<ChevronRight className="mr-1 h-3 w-3 flex-shrink-0 text-primary/40" />
-							<span className="text-wrap break-words">{model}</span>
+							<ChevronRight 
+								className="mr-1 h-3 w-3 flex-shrink-0 text-primary/40" 
+								aria-hidden="true"
+							/>
+							<span className="text-wrap break-words">{highlightText(model, searchQuery)}</span>
 						</motion.li>
 					))}
 				</ul>

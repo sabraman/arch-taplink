@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Clock, ExternalLink, Mail, MapPin, Phone, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { FooterSkeleton } from "~/components/ui/website-skeletons";
 
 // Import SVG as component
 const PawIcon = () => (
@@ -39,6 +41,21 @@ const PawIcon = () => (
 );
 
 export function Footer() {
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		// Simulate content loading
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 150);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <FooterSkeleton />;
+	}
+
 	return (
 		<footer className="mt-10 w-full border-primary/10 border-t bg-background/95 pt-12 pb-6 backdrop-blur-md">
 			<div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -111,15 +128,6 @@ export function Footer() {
 							</a>
 						</div>
 
-						<div className="flex items-center justify-center text-muted-foreground text-sm md:justify-start">
-							<Mail size={16} className="mr-2 text-primary/70" />
-							<a
-								href="mailto:info@archsmoke.ru"
-								className="transition-colors hover:text-primary"
-							>
-								info@archsmoke.ru
-							</a>
-						</div>
 					</motion.div>
 
 					{/* Legal Info */}

@@ -2,16 +2,19 @@ import Image from "next/image";
 import { AboutUs } from "~/components/about-us";
 import { Footer } from "~/components/footer";
 import { OpeningHours } from "~/components/opening-hours";
-import { ProductCatalog } from "~/components/product-catalog";
+import { EnhancedProductCatalog } from "~/components/enhanced-product-catalog";
 import { ScrollProgressBar } from "~/components/scroll-progress-bar";
 import { SmoothScroll } from "~/components/smooth-scroll";
 
 export default function HomePage() {
 	return (
 		<>
+			<a href="#main-content" className="skip-link">
+				Перейти к основному содержанию
+			</a>
 			<ScrollProgressBar />
 			<SmoothScroll>
-				<main className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-background">
+				<main id="main-content" className="relative flex min-h-screen flex-col items-center overflow-x-hidden bg-background">
 					{/* Opening Hours - Fixed at the top */}
 					<div className="fixed top-0 z-50 w-full border-primary/10 border-b bg-background/80 shadow-sm backdrop-blur-lg">
 						<div className="mx-auto w-full max-w-6xl">
@@ -187,7 +190,7 @@ export default function HomePage() {
 							</div>
 
 							<div className="mx-auto max-w-5xl">
-								<ProductCatalog />
+								<EnhancedProductCatalog />
 							</div>
 						</div>
 					</div>

@@ -17,7 +17,7 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
 	title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
-	description: "ARCH – доверие с первой затяжки",
+	description: "ARCH – премиум магазин вейпов, электронных сигарет, жидкостей и табака в СПБ. Одноразки ELFBAR, LOST MARY, PLONQ. Кальянные табаки, импортные напитки. Полтавский пр., 2",
 	applicationName: "ARCH",
 	appleWebApp: {
 		capable: true,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		title: "ARCH – Табак и аксессуары в Санкт-Петербург. Доверие с первой затяжки.",
-		description: "ARCH – доверие с первой затяжки",
+		description: "ARCH – премиум магазин вейпов, электронных сигарет, жидкостей и табака в СПБ. Одноразки ELFBAR, LOST MARY, PLONQ. Кальянные табаки, импортные напитки.",
 		url: process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000",
 		siteName: "ARCH",
 		images: [
@@ -112,6 +112,23 @@ export default function RootLayout({
 					<AgeVerificationStyles />
 					{children}
 				</PostHogProvider>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							if ('serviceWorker' in navigator) {
+								window.addEventListener('load', function() {
+									navigator.serviceWorker.register('/sw.js')
+										.then(function(registration) {
+											console.log('SW registered: ', registration);
+										})
+										.catch(function(registrationError) {
+											console.log('SW registration failed: ', registrationError);
+										});
+								});
+							}
+						`,
+					}}
+				/>
 			</body>
 		</html>
 	);

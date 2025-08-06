@@ -5,6 +5,7 @@ import { Clock, Phone, Send } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Badge } from "~/components/ui/badge";
+import { OpeningHoursSkeleton } from "~/components/ui/website-skeletons";
 
 // Import SVG as component
 const PawIcon = () => (
@@ -61,6 +62,7 @@ const RouteIcon = () => (
 
 export function OpeningHours() {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		// Function to check if the store is currently open
@@ -84,6 +86,7 @@ export function OpeningHours() {
 
 		// Check initially
 		checkIfOpen();
+		setIsLoading(false);
 
 		// Set up interval to check every minute
 		const interval = setInterval(checkIfOpen, 60000);
@@ -92,8 +95,12 @@ export function OpeningHours() {
 		return () => clearInterval(interval);
 	}, []);
 
+	if (isLoading) {
+		return <OpeningHoursSkeleton />;
+	}
+
 	return (
-		<div className="flex items-center justify-between gap-1 xxs:gap-2 xs:gap-3 sm:gap-4 md:gap-6 px-1.5 xxs:px-2 xs:px-3 sm:px-5 md:px-6 py-0.5 xxs:py-1 xs:py-1.5 sm:py-2">
+		<div className="grid grid-cols-3 items-center gap-1 xxs:gap-2 xs:gap-3 sm:gap-4 md:gap-6 px-1.5 xxs:px-2 xs:px-3 sm:px-5 md:px-6 py-0.5 xxs:py-1 xs:py-1.5 sm:py-2">
 			{/* Left side icons */}
 			<div className="flex items-center space-x-1.5 xxs:space-x-2 xs:space-x-2.5 sm:space-x-3">
 				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -122,7 +129,7 @@ export function OpeningHours() {
 				initial={{ opacity: 0, y: -10 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, ease: "easeOut" }}
-				className="flex items-center"
+				className="flex items-center justify-center"
 			>
 				<Badge
 					variant="outline"
@@ -132,7 +139,7 @@ export function OpeningHours() {
 						}`}
 				>
 					{/* Status indicator */}
-					<span className="flex items-center gap-0.5 xxs:gap-1 xs:gap-1.5 sm:gap-2">
+					<span className="flex items-center justify-center gap-0.5 xxs:gap-1 xs:gap-1.5 sm:gap-2">
 						<motion.span
 							className={`inline-flex h-2 w-2 xxs:h-2.5 xxs:w-2.5 xs:h-3 xs:w-3 sm:h-3.5 sm:w-3.5 rounded-full ${isOpen ? "bg-primary" : "bg-destructive"
 								}`}
@@ -168,7 +175,7 @@ export function OpeningHours() {
 			</motion.div>
 
 			{/* Right side icon */}
-			<div className="flex items-center">
+			<div className="flex items-center justify-end">
 				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 					<Link
 						href="https://yandex.ru/maps/-/CHrszN9D"

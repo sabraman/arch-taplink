@@ -1,8 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { AboutUsSkeleton } from "~/components/ui/website-skeletons";
 
 export function AboutUs() {
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		// Simulate content loading
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 100);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <AboutUsSkeleton />;
+	}
 	return (
 		<motion.div
 			className="mx-auto mb-14 w-full max-w-4xl px-4 sm:px-6"
