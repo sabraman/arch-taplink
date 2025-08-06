@@ -222,7 +222,10 @@ export function ProductCatalogSkeleton() {
 			{/* Accordion items skeleton */}
 			<div className="space-y-4">
 				{Array.from({ length: 6 }).map((_, i) => (
-					<div key={i} className="rounded-lg border">
+					<div
+						key={`skeleton-accordion-${i}-${Date.now()}`}
+						className="rounded-lg border"
+					>
 						<div className="flex items-center justify-between p-4">
 							<div className="flex items-center space-x-3">
 								<Skeleton className="h-6 w-6 rounded" />

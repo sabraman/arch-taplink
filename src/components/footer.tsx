@@ -78,6 +78,9 @@ export function Footer() {
 								width={120}
 								height={50}
 								className="h-10 w-90vw"
+								style={{
+									height: "auto",
+								}}
 							/>
 						</div>
 						<p className="mt-2 text-center text-muted-foreground text-sm md:text-left">

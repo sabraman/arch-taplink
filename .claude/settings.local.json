@@ -1,17 +1,17 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(rm:*)",
-      "Bash(npx:*)",
-      "Bash(git add:*)",
-      "Bash(git push:*)",
-      "Bash(npm install)",
-      "Bash(pnpm install:*)",
-      "Bash(find:*)",
-      "Bash(rg:*)",
-      "Bash(pnpm run:*)",
-      "Bash(grep:*)"
-    ],
-    "deny": []
-  }
+	"permissions": {
+		"allow": [
+			"Bash(rm:*)",
+			"Bash(npx:*)",
+			"Bash(git add:*)",
+			"Bash(git push:*)",
+			"Bash(npm install)",
+			"Bash(pnpm install:*)",
+			"Bash(find:*)",
+			"Bash(rg:*)",
+			"Bash(pnpm run:*)",
+			"Bash(grep:*)"
+		],
+		"deny": []
+	}
 }

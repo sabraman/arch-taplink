@@ -58,7 +58,7 @@ export function FancyButton({
 				{/* Base gradient */}
 				<div
 					className={`absolute inset-0 bg-gradient-to-r ${gradient} transition-all duration-300 ease-out`}
-				></div>
+				/>
 
 				{/* Spotlight gradient effect - follows mouse */}
 				{hovered && (
@@ -81,7 +81,7 @@ export function FancyButton({
 				)}
 
 				{/* Subtle border */}
-				<div className="absolute inset-0 rounded-lg border border-white/10"></div>
+				<div className="absolute inset-0 rounded-lg border border-white/10" />
 
 				{/* Content with shadow for depth */}
 				<div className="relative flex items-center justify-center px-4 py-3">

@@ -125,7 +125,7 @@ export default function MultiLevelAccordionWithIcon() {
 						<AccordionContent className="p-0">
 							{item.collapsibles.map((collapsible, index) => (
 								<CollapsibleDemo
-									key={index}
+									key={`${item.title}-collapsible-${index}-${collapsible.title}`}
 									title={collapsible.title}
 									content={collapsible.content}
 									open={collapsible.open}

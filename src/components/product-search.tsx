@@ -57,8 +57,8 @@ export function ProductSearch({
 						id={id}
 						ref={inputRef}
 						className={cn(
-							"w-full pl-12 pr-12 rounded-full transition-shadow focus:shadow-lg focus:ring-2 focus:ring-primary/40",
-							inputValue && "pr-12"
+							"w-full rounded-full pr-12 pl-12 transition-shadow focus:shadow-lg focus:ring-2 focus:ring-primary/40",
+							inputValue && "pr-12",
 						)}
 						placeholder={placeholder}
 						type="search"

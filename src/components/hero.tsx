@@ -13,12 +13,13 @@ import { useEffect, useRef, useState } from "react";
 const PawIcon = () => (
 	<svg
 		width="34"
-		height="30"
-		viewBox="0 0 315 279"
+		height="34"
+		viewBox="0 0 320 320"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		className="text-primary"
 	>
+		<title>Декоративная лапа</title>
 		<path
 			d="M154.521 106.172C156.509 105.991 158.561 106.044 160.547 106.228C165.451 106.684 170.108 108.113 174.566 110.181C190.896 117.755 198.969 133.017 208.363 147.359C212.212 153.139 216.338 158.73 220.724 164.114C227.877 172.96 237.124 179.64 244.336 188.337C255.96 202.356 263.403 220.065 261.617 238.5C260.482 250.764 254.438 262.049 244.857 269.788C225.597 285.529 202.348 277.132 181.052 271.56C174.059 269.73 167.163 268.279 159.964 267.551C145.427 265.83 119.518 276.814 103.6 278.621C91.5176 279.993 79.4346 277.608 69.8366 269.9C60.1706 262.073 54.0556 250.689 52.8686 238.308C50.8736 218.73 59.9456 199.181 73.1166 185.084C77.1626 180.753 81.7276 176.921 85.9596 172.775C89.9396 168.877 93.5996 164.537 97.0266 160.149C105.938 148.742 112.507 135.662 121.711 124.546C130.011 114.522 141.375 107.407 154.521 106.172Z"
 			fill="currentColor"
@@ -49,33 +50,24 @@ const SmokeEffect = () => {
 			<div className="absolute top-0 left-0 h-full w-full">
 				{Array.from({ length: 5 }).map((_, index) => (
 					<motion.div
-						key={index}
+						key={`paw-${index}-${Math.random()}`}
 						className="absolute"
 						style={{
-							width: `${100 + index * 20}px`,
-							height: `${200 + index * 40}px`,
-							borderRadius: "50%",
-							filter: "blur(40px)",
-							opacity: 0.03 + index * 0.01,
-							backgroundColor: "#FF731D",
-							left: `${10 + index * 20}%`,
-							top: `${30 + (index % 3) * 10}%`,
+							left: `${Math.random() * 100}%`,
+							top: `${Math.random() * 100}%`,
 						}}
 						animate={{
-							y: [0, -30, 0],
-							opacity: [
-								0.03 + index * 0.01,
-								0.08 + index * 0.01,
-								0.03 + index * 0.01,
-							],
+							y: [0, -20, 0],
+							opacity: [0.3, 0.6, 0.3],
 						}}
 						transition={{
-							duration: 8 + index,
+							duration: 3 + Math.random() * 2,
 							repeat: Number.POSITIVE_INFINITY,
-							ease: "easeInOut",
-							delay: index * 0.5,
+							delay: Math.random() * 2,
 						}}
-					/>
+					>
+						<PawIcon />
+					</motion.div>
 				))}
 			</div>
 		</div>
@@ -190,17 +182,17 @@ export function Hero() {
 						backgroundImage:
 							"url('data:image/png;base64,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')",
 					}}
-				></div>
+				/>
 
 				{/* Parallax atmosphere */}
-				<div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent opacity-40 mix-blend-overlay"></div>
+				<div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent opacity-40 mix-blend-overlay" />
 
 				{/* Paw prints background */}
 				<div ref={bgPawsRef} className="absolute inset-0 opacity-20">
 					{!shouldReduceMotion &&
 						paws.map((paw, i) => (
 							<motion.div
-								key={i}
+								key={`paw-animation-${i}-${Math.random()}`}
 								className="absolute"
 								style={{
 									top: `${paw.y}%`,
@@ -231,7 +223,7 @@ export function Hero() {
 				</div>
 
 				{/* Gradient overlay for depth */}
-				<div style={gradientOverlay}></div>
+				<div style={gradientOverlay} />
 			</div>
 
 			{/* Logo Container with Parallax Effect */}
@@ -273,6 +265,9 @@ export function Hero() {
 								height={248}
 								priority
 								className="h-auto w-full drop-shadow-2xl filter"
+								style={{
+									height: "auto",
+								}}
 							/>
 
 							{/* Animated shine effect */}

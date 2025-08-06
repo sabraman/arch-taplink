@@ -475,12 +475,12 @@ export function EnhancedProductCatalog() {
 
 			// Also open all collapsibles that have matches
 			const matchingCollapsibles: string[] = [];
-			filteredProducts.forEach((category) => {
-				category.brands.forEach((brand, brandIndex) => {
+			for (const category of filteredProducts) {
+				for (const [brandIndex, brand] of category.brands.entries()) {
 					const brandId = `${category.id}-brand-${brandIndex}`;
 					matchingCollapsibles.push(brandId);
-				});
-			});
+				}
+			}
 			setOpenCollapsibles(matchingCollapsibles);
 		} else {
 			// When search is cleared, only close collapsibles but keep user's accordion choices
@@ -511,13 +511,13 @@ export function EnhancedProductCatalog() {
 		return parts.map((part, index) =>
 			regex.test(part) ? (
 				<mark
-					key={index}
+					key={`highlight-${index}-${part}`}
 					className="rounded bg-primary/30 px-1 text-foreground"
 				>
 					{part}
 				</mark>
 			) : (
-				part
+				<span key={`text-${index}-${part}`}>{part}</span>
 			),
 		);
 	};
@@ -532,7 +532,6 @@ export function EnhancedProductCatalog() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 0.8 }}
-				role="region"
 				aria-labelledby="catalog-heading"
 			>
 				<div className="mb-10 flex flex-col items-center">
@@ -559,7 +558,7 @@ export function EnhancedProductCatalog() {
 					</motion.div>
 				</div>
 
-				<div className="w-full overflow-x-clip" role="main">
+				<main className="w-full overflow-x-clip">
 					{isLoading ? (
 						<ProductCatalogSkeleton />
 					) : showNoResults ? (
@@ -598,7 +597,6 @@ export function EnhancedProductCatalog() {
 									<AccordionContent
 										className="p-0"
 										id={`${category.id}-content`}
-										role="region"
 										aria-labelledby={`${category.id}-trigger`}
 									>
 										{category.description && (
@@ -627,7 +625,7 @@ export function EnhancedProductCatalog() {
 							))}
 						</Accordion>
 					)}
-				</div>
+				</main>
 
 				{/* Decorative paw icon - positioned relative to prevent overflow */}
 				<div className="relative mx-auto mt-10 hidden text-center opacity-5 md:block">
@@ -693,18 +691,16 @@ function BrandCollapsible({
 			<CollapsibleContent
 				className="mt-1 overflow-hidden ps-6 text-muted-foreground text-sm transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
 				id={`${brandId}-content`}
-				role="region"
 				aria-labelledby={`${brandId}-trigger`}
 			>
-				<ul className="space-y-1 py-2" role="list">
+				<ul className="space-y-1 py-2">
 					{brand.models.map((model, modelIndex) => (
 						<motion.li
-							key={`${brandId}-model-${modelIndex}`}
+							key={`${brandId}-model-${model}`}
 							className="flex items-center text-muted-foreground text-sm"
 							initial={{ opacity: 0, x: -10 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ delay: modelIndex * 0.03 }}
-							role="listitem"
 						>
 							<ChevronRight
 								className="mr-1 h-3 w-3 flex-shrink-0 text-primary/40"

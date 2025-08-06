@@ -131,7 +131,7 @@ export function AgeVerification() {
 						<span className="relative">
 							{/* Shine effect */}
 							<span className="absolute inset-0 overflow-hidden rounded-lg">
-								<span className="shine-effect absolute inset-0 rounded-lg"></span>
+								<span className="shine-effect absolute inset-0 rounded-lg" />
 							</span>
 							<span className="relative">Да, мне есть 18</span>
 						</span>

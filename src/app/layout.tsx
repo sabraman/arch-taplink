@@ -129,10 +129,19 @@ export default function RootLayout({
 		>
 			<head>
 				{/* Performance optimizations */}
-				<link rel="preload" href="/arch-logo.svg" as="image" fetchPriority="high" />
+				<link
+					rel="preload"
+					href="/arch-logo.svg"
+					as="image"
+					fetchPriority="high"
+				/>
 				<link rel="dns-prefetch" href="//fonts.googleapis.com" />
-				<link rel="preconnect" href="//fonts.gstatic.com" crossOrigin="anonymous" />
-				
+				<link
+					rel="preconnect"
+					href="//fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+
 				{/* Critical CSS for above-the-fold content */}
 				{/* eslint-disable-next-line react/no-danger */}
 				<style
@@ -160,7 +169,7 @@ export default function RootLayout({
 						`,
 					}}
 				/>
-				
+
 				<meta name="msapplication-config" content="/browserconfig.xml" />
 				<link
 					rel="yandex-tableau-widget"

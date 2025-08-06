@@ -5,26 +5,55 @@ import Image from "next/image";
 import { OpeningHours } from "~/components/opening-hours";
 
 // Lazy load components below the fold for better performance
-const AboutUs = dynamic(() => import("~/components/about-us").then((mod) => ({ default: mod.AboutUs })), {
-	loading: () => <div className="h-32 bg-muted/20 animate-pulse rounded-lg" />,
-});
+const AboutUs = dynamic(
+	() =>
+		import("~/components/about-us").then((mod) => ({ default: mod.AboutUs })),
+	{
+		loading: () => (
+			<div className="h-32 animate-pulse rounded-lg bg-muted/20" />
+		),
+	},
+);
 
-const EnhancedProductCatalog = dynamic(() => import("~/components/enhanced-product-catalog").then((mod) => ({ default: mod.EnhancedProductCatalog })), {
-	loading: () => <div className="h-96 bg-muted/20 animate-pulse rounded-lg" />,
-});
+const EnhancedProductCatalog = dynamic(
+	() =>
+		import("~/components/enhanced-product-catalog").then((mod) => ({
+			default: mod.EnhancedProductCatalog,
+		})),
+	{
+		loading: () => (
+			<div className="h-96 animate-pulse rounded-lg bg-muted/20" />
+		),
+	},
+);
 
-const Footer = dynamic(() => import("~/components/footer").then((mod) => ({ default: mod.Footer })), {
-	loading: () => <div className="h-64 bg-muted/20 animate-pulse" />,
-});
+const Footer = dynamic(
+	() => import("~/components/footer").then((mod) => ({ default: mod.Footer })),
+	{
+		loading: () => <div className="h-64 animate-pulse bg-muted/20" />,
+	},
+);
 
-const ScrollProgressBar = dynamic(() => import("~/components/scroll-progress-bar").then((mod) => ({ default: mod.ScrollProgressBar })), {
-	ssr: false,
-});
+const ScrollProgressBar = dynamic(
+	() =>
+		import("~/components/scroll-progress-bar").then((mod) => ({
+			default: mod.ScrollProgressBar,
+		})),
+	{
+		ssr: false,
+	},
+);
 
-const SmoothScroll = dynamic(() => import("~/components/smooth-scroll").then((mod) => ({ default: mod.SmoothScroll })), {
-	ssr: false,
-	loading: () => <div className="min-h-screen" />,
-});
+const SmoothScroll = dynamic(
+	() =>
+		import("~/components/smooth-scroll").then((mod) => ({
+			default: mod.SmoothScroll,
+		})),
+	{
+		ssr: false,
+		loading: () => <div className="min-h-screen" />,
+	},
+);
 
 function SkipLink() {
 	return (
@@ -64,7 +93,8 @@ export default function HomePage() {
 								fetchPriority="high"
 								className="h-auto w-full max-w-md drop-shadow-xl filter"
 								style={{
-									color: 'transparent',
+									color: "transparent",
+									height: "auto",
 								}}
 							/>
 						</div>

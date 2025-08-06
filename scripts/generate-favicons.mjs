@@ -1,6 +1,6 @@
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { favicons } from "favicons";
-import fs from "fs/promises";
 
 const source = "public/arch-corgi-logo.svg"; // Source image
 const outputDir = "public"; // Output directory for favicons and manifest files
@@ -63,7 +63,9 @@ async function generateFavicons() {
 		console.log(
 			"--------------------------------------------------------------------",
 		);
-		response.html.forEach((tag) => console.log(tag));
+		for (const tag of response.html) {
+			console.log(tag);
+		}
 		console.log(
 			"--------------------------------------------------------------------",
 		);
