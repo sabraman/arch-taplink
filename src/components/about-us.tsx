@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AboutUsSkeleton } from "~/components/ui/website-skeletons";
 
 export function AboutUs() {

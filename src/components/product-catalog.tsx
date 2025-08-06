@@ -182,7 +182,12 @@ const productData: ProductCategory[] = [
 			},
 			{
 				name: "ДРУГИЕ БРЕНДЫ",
-				models: ["DUALL Bar 12000", "SNOOPYSMOKE 15000", "LOSTVAPE TB18000", "Gang Immortal 16000"],
+				models: [
+					"DUALL Bar 12000",
+					"SNOOPYSMOKE 15000",
+					"LOSTVAPE TB18000",
+					"Gang Immortal 16000",
+				],
 			},
 		],
 	},
@@ -276,7 +281,17 @@ const productData: ProductCategory[] = [
 			},
 			{
 				name: "СНЕКИ",
-				models: ["Pringles", "Maltesers", "Toxic Waste", "Shock", "Mentos", "Buldak", "Skittles", "Haocuidian (чипсы из батата)", "Kit Kat"],
+				models: [
+					"Pringles",
+					"Maltesers",
+					"Toxic Waste",
+					"Shock",
+					"Mentos",
+					"Buldak",
+					"Skittles",
+					"Haocuidian (чипсы из батата)",
+					"Kit Kat",
+				],
 			},
 		],
 	},
@@ -437,12 +452,12 @@ export function ProductCatalog() {
 									</div>
 									{category.brands.length > 0
 										? category.brands.map((brand, brandIndex) => (
-											<BrandCollapsible
-												key={brandIndex}
-												brand={brand}
-												isFirst={brandIndex === 0}
-											/>
-										))
+												<BrandCollapsible
+													key={brandIndex}
+													brand={brand}
+													isFirst={brandIndex === 0}
+												/>
+											))
 										: null}
 								</AccordionContent>
 							</AccordionItem>

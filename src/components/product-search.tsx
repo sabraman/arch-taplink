@@ -1,7 +1,7 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
 import { CircleXIcon, SearchIcon } from "lucide-react";
+import { useId, useRef, useState } from "react";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { cn } from "~/lib/utils";
@@ -13,11 +13,11 @@ interface ProductSearchProps {
 	"aria-label"?: string;
 }
 
-export function ProductSearch({ 
-	onSearch, 
-	placeholder = "Поиск товаров...", 
+export function ProductSearch({
+	onSearch,
+	placeholder = "Поиск товаров...",
 	className,
-	"aria-label": ariaLabel = "Поиск товаров"
+	"aria-label": ariaLabel = "Поиск товаров",
 }: ProductSearchProps) {
 	const id = useId();
 	const [inputValue, setInputValue] = useState("");
@@ -43,22 +43,22 @@ export function ProductSearch({
 	};
 
 	return (
-		<div className={cn("w-full", className)}>
+		<div className="w-full">
 			<Label htmlFor={id} className="sr-only">
 				{ariaLabel}
 			</Label>
-			<form onSubmit={handleSubmit} role="search">
-				<div className="relative">
-					<SearchIcon 
-						className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" 
+			<form onSubmit={handleSubmit} className="w-full">
+				<div className="relative w-full">
+					<SearchIcon
+						className="-translate-y-1/2 pointer-events-none absolute top-1/2 left-4 h-4 w-4 text-muted-foreground"
 						aria-hidden="true"
 					/>
 					<Input
 						id={id}
 						ref={inputRef}
 						className={cn(
-							"pl-10",
-							inputValue && "pr-10"
+							"w-full pl-12 pr-12 rounded-full transition-shadow focus:shadow-lg focus:ring-2 focus:ring-primary/40",
+							inputValue && "pr-12"
 						)}
 						placeholder={placeholder}
 						type="search"
@@ -66,17 +66,16 @@ export function ProductSearch({
 						onChange={handleInputChange}
 						aria-label={ariaLabel}
 						role="searchbox"
-						aria-expanded="false"
 						autoComplete="off"
 					/>
 					{inputValue && (
 						<button
 							type="button"
-							className="text-muted-foreground/80 hover:text-foreground focus-visible:border-primary focus-visible:ring-primary/50 absolute inset-y-0 right-0 flex h-full w-9 items-center justify-center rounded-r-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+							className="absolute inset-y-0 right-0 flex h-full w-10 items-center justify-center rounded-full text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-primary/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
 							aria-label="Очистить поиск"
 							onClick={handleClearInput}
 						>
-							<CircleXIcon size={16} aria-hidden="true" />
+							<CircleXIcon size={18} aria-hidden="true" />
 						</button>
 					)}
 				</div>

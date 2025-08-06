@@ -5,21 +5,21 @@ import { Skeleton } from "~/components/ui/skeleton";
 // Opening Hours Skeleton
 export function OpeningHoursSkeleton() {
 	return (
-		<div className="grid grid-cols-3 items-center gap-1 xxs:gap-2 xs:gap-3 sm:gap-4 md:gap-6 px-1.5 xxs:px-2 xs:px-3 sm:px-5 md:px-6 py-0.5 xxs:py-1 xs:py-1.5 sm:py-2">
+		<div className="grid grid-cols-3 items-center gap-1 xs:gap-3 xxs:gap-2 px-1.5 xs:px-3 xxs:px-2 py-0.5 xs:py-1.5 xxs:py-1 sm:gap-4 sm:px-5 sm:py-2 md:gap-6 md:px-6">
 			{/* Left side icons */}
-			<div className="flex items-center space-x-1.5 xxs:space-x-2 xs:space-x-2.5 sm:space-x-3">
-				<Skeleton className="h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 rounded-full" />
-				<Skeleton className="h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 rounded-full" />
+			<div className="flex items-center space-x-1.5 xs:space-x-2.5 xxs:space-x-2 sm:space-x-3">
+				<Skeleton className="h-7 xs:h-10 xxs:h-9 w-7 xs:w-10 xxs:w-9 rounded-full sm:h-11 sm:w-11" />
+				<Skeleton className="h-7 xs:h-10 xxs:h-9 w-7 xs:w-10 xxs:w-9 rounded-full sm:h-11 sm:w-11" />
 			</div>
 
 			{/* Center badge */}
 			<div className="flex items-center justify-center">
-				<Skeleton className="h-8 xxs:h-10 w-32 xxs:w-40 xs:w-48 sm:w-56 rounded-full" />
+				<Skeleton className="h-8 xxs:h-10 w-32 xs:w-48 xxs:w-40 rounded-full sm:w-56" />
 			</div>
 
 			{/* Right side icon */}
 			<div className="flex items-center justify-end">
-				<Skeleton className="h-7 w-7 xxs:h-9 xxs:w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 rounded-full" />
+				<Skeleton className="h-7 xs:h-10 xxs:h-9 w-7 xs:w-10 xxs:w-9 rounded-full sm:h-11 sm:w-11" />
 			</div>
 		</div>
 	);
@@ -44,17 +44,17 @@ export function AboutUsSkeleton() {
 			<div className="relative z-10 mx-auto max-w-3xl text-center">
 				<div className="mb-8">
 					{/* Title skeleton */}
-					<Skeleton className="h-8 w-64 mx-auto mb-4" />
-					
+					<Skeleton className="mx-auto mb-4 h-8 w-64" />
+
 					{/* Paragraphs */}
 					<div className="space-y-4 text-left">
 						<Skeleton className="h-4 w-full" />
 						<Skeleton className="h-4 w-11/12" />
 						<Skeleton className="h-4 w-10/12" />
-						<Skeleton className="h-4 w-9/12 mb-6" />
-						
+						<Skeleton className="mb-6 h-4 w-9/12" />
+
 						{/* List items */}
-						<div className="space-y-2 ml-6">
+						<div className="ml-6 space-y-2">
 							<div className="flex items-center space-x-3">
 								<Skeleton className="h-2 w-2 rounded-full" />
 								<Skeleton className="h-4 w-3/4" />
@@ -68,15 +68,15 @@ export function AboutUsSkeleton() {
 								<Skeleton className="h-4 w-4/5" />
 							</div>
 						</div>
-						
+
 						{/* Final paragraph */}
-						<div className="space-y-2 mt-6">
+						<div className="mt-6 space-y-2">
 							<Skeleton className="h-4 w-full" />
 							<Skeleton className="h-4 w-5/6" />
 						</div>
-						
+
 						{/* Small text */}
-						<Skeleton className="h-3 w-3/4 mt-6" />
+						<Skeleton className="mt-6 h-3 w-3/4" />
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@ export function AboutUsSkeleton() {
 // Footer Skeleton
 export function FooterSkeleton() {
 	return (
-		<footer className="w-full bg-card/50 border-t border-primary/10">
+		<footer className="w-full border-primary/10 border-t bg-card/50">
 			<div className="mx-auto max-w-6xl px-6 py-12">
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
 					{/* Contact column */}
@@ -125,9 +125,9 @@ export function FooterSkeleton() {
 							<Skeleton className="h-4 w-36" />
 							<Skeleton className="h-4 w-32" />
 						</div>
-						
+
 						{/* Social icons */}
-						<div className="flex space-x-3 mt-4">
+						<div className="mt-4 flex space-x-3">
 							<Skeleton className="h-8 w-8 rounded" />
 							<Skeleton className="h-8 w-8 rounded" />
 							<Skeleton className="h-8 w-8 rounded" />
@@ -136,7 +136,7 @@ export function FooterSkeleton() {
 				</div>
 
 				{/* Bottom section */}
-				<div className="mt-8 pt-8 border-t border-primary/10">
+				<div className="mt-8 border-primary/10 border-t pt-8">
 					<div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
 						<div className="flex items-center space-x-3">
 							<Skeleton className="h-6 w-6" />
@@ -153,7 +153,7 @@ export function FooterSkeleton() {
 // Logo Section Skeleton
 export function LogoSkeleton() {
 	return (
-		<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-20 xs:pt-22 sm:pt-24 md:pt-28 lg:pt-32 pb-8 xs:pb-10 sm:pb-12 md:pb-16">
+		<div className="mx-auto flex w-full max-w-4xl justify-center px-6 pt-20 xs:pt-22 pb-8 xs:pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16 lg:pt-32">
 			<Skeleton className="h-24 w-72 md:h-32 md:w-96" />
 		</div>
 	);
@@ -195,10 +195,10 @@ export function PageSkeleton() {
 // Product Card Skeleton (moved from enhanced-product-catalog)
 export function ProductCardSkeleton() {
 	return (
-		<div className="space-y-3 p-4 border rounded-lg bg-card">
+		<div className="space-y-3 rounded-lg border bg-card p-4">
 			<div className="flex items-center space-x-4">
 				<Skeleton className="h-12 w-12 rounded-full" />
-				<div className="space-y-2 flex-1">
+				<div className="flex-1 space-y-2">
 					<Skeleton className="h-4 w-[250px]" />
 					<Skeleton className="h-4 w-[200px]" />
 				</div>
@@ -212,7 +212,7 @@ export function ProductCardSkeleton() {
 // Product Catalog Skeleton (moved from enhanced-product-catalog)
 export function ProductCatalogSkeleton() {
 	return (
-		<div className="mx-auto w-full max-w-5xl overflow-hidden px-4 py-12 space-y-8">
+		<div className="mx-auto w-full max-w-5xl space-y-8 overflow-hidden px-4 py-12">
 			{/* Title and search skeleton */}
 			<div className="flex flex-col items-center space-y-6">
 				<Skeleton className="h-8 w-48" />
@@ -222,7 +222,7 @@ export function ProductCatalogSkeleton() {
 			{/* Accordion items skeleton */}
 			<div className="space-y-4">
 				{Array.from({ length: 6 }).map((_, i) => (
-					<div key={i} className="border rounded-lg">
+					<div key={i} className="rounded-lg border">
 						<div className="flex items-center justify-between p-4">
 							<div className="flex items-center space-x-3">
 								<Skeleton className="h-6 w-6 rounded" />
@@ -230,7 +230,7 @@ export function ProductCatalogSkeleton() {
 							</div>
 							<Skeleton className="h-5 w-5 rounded" />
 						</div>
-						<div className="px-4 pb-4 space-y-3">
+						<div className="space-y-3 px-4 pb-4">
 							<ProductCardSkeleton />
 							<ProductCardSkeleton />
 							<ProductCardSkeleton />

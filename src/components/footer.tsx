@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Clock, ExternalLink, Mail, MapPin, Phone, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FooterSkeleton } from "~/components/ui/website-skeletons";
 
 // Import SVG as component
@@ -16,6 +16,9 @@ const PawIcon = () => (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		className="text-primary/60"
+		aria-hidden="true"
+		role="img"
+		aria-label="Paw Icon"
 	>
 		<path
 			d="M154.521 106.172C156.509 105.991 158.561 106.044 160.547 106.228C165.451 106.684 170.108 108.113 174.566 110.181C190.896 117.755 198.969 133.017 208.363 147.359C212.212 153.139 216.338 158.73 220.724 164.114C227.877 172.96 237.124 179.64 244.336 188.337C255.96 202.356 263.403 220.065 261.617 238.5C260.482 250.764 254.438 262.049 244.857 269.788C225.597 285.529 202.348 277.132 181.052 271.56C174.059 269.73 167.163 268.279 159.964 267.551C145.427 265.83 119.518 276.814 103.6 278.621C91.5176 279.993 79.4346 277.608 69.8366 269.9C60.1706 262.073 54.0556 250.689 52.8686 238.308C50.8736 218.73 59.9456 199.181 73.1166 185.084C77.1626 180.753 81.7276 176.921 85.9596 172.775C89.9396 168.877 93.5996 164.537 97.0266 160.149C105.938 148.742 112.507 135.662 121.711 124.546C130.011 114.522 141.375 107.407 154.521 106.172Z"
@@ -74,7 +77,7 @@ export function Footer() {
 								alt="ARCH Logo"
 								width={120}
 								height={50}
-								className="h-10 w-auto"
+								className="h-10 w-90vw"
 							/>
 						</div>
 						<p className="mt-2 text-center text-muted-foreground text-sm md:text-left">
@@ -127,7 +130,6 @@ export function Footer() {
 								+7 (985) 669-68-70
 							</a>
 						</div>
-
 					</motion.div>
 
 					{/* Legal Info */}

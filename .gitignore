@@ -47,3 +47,4 @@ yarn-error.log*
 
 # Cursor
 .cursor/
+.env.local
